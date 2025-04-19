@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/alunos")
@@ -21,13 +20,18 @@ public class AlunoController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Aluno> buscarPorId(@PathVariable Long id) {
+    public Aluno buscarPorId(@PathVariable Long id) {
         return alunoService.buscarPorId(id);
     }
 
     @PostMapping
     public Aluno salvar(@RequestBody Aluno aluno) {
         return alunoService.salvar(aluno);
+    }
+
+    @PutMapping("/{id}")
+    public Aluno atualizar(@PathVariable Long id, @RequestBody Aluno aluno) {
+        return alunoService.atualizar(id, aluno);
     }
 
     @DeleteMapping("/{id}")

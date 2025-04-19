@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CursoService {
@@ -18,9 +17,10 @@ public class CursoService {
         return cursoRepository.findAll();
     }
 
-    public Optional<Curso> buscarPorId(Long id) {
-        return cursoRepository.findById(id);
-    }
+    public Curso buscarPorId(Long id) {
+        return cursoRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Curso não encontrado com id: " + id));
+    }    
 
     public Curso salvar(Curso curso) {
         return cursoRepository.save(curso);
@@ -28,5 +28,17 @@ public class CursoService {
 
     public void deletar(Long id) {
         cursoRepository.deleteById(id);
+    }
+
+    public Curso atualizar(Long id, Curso cursoAtualizado) {
+        // Agora, como buscarPorId já lança exceção, só chamamos direto
+        Curso cursoExistente = buscarPorId(id);
+    
+        // Atualiza os dados do curso
+        cursoExistente.setNome(cursoAtualizado.getNome());
+        cursoExistente.setDescricao(cursoAtualizado.getDescricao());
+    
+        // Salva o curso atualizado
+        return cursoRepository.save(cursoExistente);
     }
 }

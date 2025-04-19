@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AlunoService {
@@ -18,12 +17,21 @@ public class AlunoService {
         return alunoRepository.findAll();
     }
 
-    public Optional<Aluno> buscarPorId(Long id) {
-        return alunoRepository.findById(id);
+    public Aluno buscarPorId(Long id) {
+        return alunoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Aluno não encontrado com o id: " + id));
     }
 
     public Aluno salvar(Aluno aluno) {
         return alunoRepository.save(aluno);
+    }
+
+    public Aluno atualizar(Long id, Aluno alunoAtualizado) {
+        Aluno alunoExistente = buscarPorId(id);
+        alunoExistente.setNome(alunoAtualizado.getNome());
+        alunoExistente.setEmail(alunoAtualizado.getEmail());
+        alunoExistente.setCursos(alunoAtualizado.getCursos()); // se tiver relação com curso
+        return alunoRepository.save(alunoExistente);
     }
 
     public void deletar(Long id) {
