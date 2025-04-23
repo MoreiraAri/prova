@@ -1,8 +1,7 @@
 # Projeto Spring Boot – Sistema de Cadastro de Alunos e Cursos
 
 ## 📚 Descrição
-Este projeto foi desenvolvido como parte da aula de Arquitetura de Aplicação Web, utilizando o framework Spring Boot.  
-O objetivo principal foi demonstrar a criação de uma aplicação CRUD com as entidades **Aluno** e **Curso**.
+Este projeto foi desenvolvido como parte da aula de Arquitetura de Aplicação Web, utilizando o framework Spring Boot. O objetivo principal foi demonstrar a criação de uma aplicação CRUD com as entidades **Aluno** e **Curso**.
 
 ---
 
