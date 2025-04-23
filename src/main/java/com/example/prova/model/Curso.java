@@ -17,8 +17,10 @@ public class Curso {
     private Long id;
 
     private String nome;
-
     private String descricao;
+    // Novos campos
+    private int cargaHoraria;
+    private String nivel;
 
     @ManyToMany(mappedBy = "cursos")
     private Set<Aluno> alunos;

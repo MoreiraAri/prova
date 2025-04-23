@@ -28,10 +28,15 @@ public class AlunoService {
 
     public Aluno atualizar(Long id, Aluno alunoAtualizado) {
         Aluno alunoExistente = buscarPorId(id);
+        
+        // Atualizando os campos
         alunoExistente.setNome(alunoAtualizado.getNome());
         alunoExistente.setEmail(alunoAtualizado.getEmail());
-        alunoExistente.setCursos(alunoAtualizado.getCursos()); // se tiver relação com curso
-        return alunoRepository.save(alunoExistente);
+        alunoExistente.setDataNascimento(alunoAtualizado.getDataNascimento());  // Atualizando dataNascimento
+        alunoExistente.setMatricula(alunoAtualizado.getMatricula());  // Atualizando matricula
+        alunoExistente.setCursos(alunoAtualizado.getCursos());  // Atualizando cursos (se houver relação)
+
+        return alunoRepository.save(alunoExistente);  // Salvando as alterações
     }
 
     public void deletar(Long id) {

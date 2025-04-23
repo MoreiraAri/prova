@@ -3,7 +3,10 @@ package com.example.prova.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Data
@@ -18,6 +21,9 @@ public class Aluno {
 
     private String nome;
     private String email;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dataNascimento;
+    private String matricula;
 
     @ManyToMany
     @JoinTable(

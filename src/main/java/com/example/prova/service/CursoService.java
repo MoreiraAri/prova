@@ -31,14 +31,13 @@ public class CursoService {
     }
 
     public Curso atualizar(Long id, Curso cursoAtualizado) {
-        // Agora, como buscarPorId já lança exceção, só chamamos direto
         Curso cursoExistente = buscarPorId(id);
-    
-        // Atualiza os dados do curso
+
         cursoExistente.setNome(cursoAtualizado.getNome());
         cursoExistente.setDescricao(cursoAtualizado.getDescricao());
-    
-        // Salva o curso atualizado
+        cursoExistente.setCargaHoraria(cursoAtualizado.getCargaHoraria()); // NOVO
+        cursoExistente.setNivel(cursoAtualizado.getNivel());               // NOVO
+
         return cursoRepository.save(cursoExistente);
     }
 }
